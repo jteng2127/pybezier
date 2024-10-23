@@ -76,5 +76,6 @@ This project uses `pytest` for testing. To run the tests:
 
 2. Run the tests:
     ```bash
-    pytest tests/
+    cd build
+    make pytest
     ```

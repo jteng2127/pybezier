@@ -23,3 +23,14 @@ project(pybezier_library)
 
 # Add the cpp subdirectory where the C++ code is located
 add_subdirectory(pybezier/cpp)
+
+# add_custom_target(run_tests
+#     COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_SOURCE_DIR}/pybezier/cpp python -m pytest test/
+#     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+#     COMMENT "Running Python unit tests with pytest"
+# )
+add_custom_target(pytest
+    COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_SOURCE_DIR}/pybezier/cpp python -m pytest ${CMAKE_SOURCE_DIR}/tests
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Running Python unit tests with pytest"
+)
