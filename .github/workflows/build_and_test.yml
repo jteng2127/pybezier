@@ -1,0 +1,30 @@
+name: Build and Test
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y cmake build-essential pybind11-dev
+          pip install pytest
+
+      - name: Run CMake to configure the build
+        run: mkdir build && cd build && cmake ..
+
+      - name: Build with Make
+        run: cd build && make
+
+      - name: Run Python tests with pytest
+        run: cd build && make pytest
