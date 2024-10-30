@@ -1,1 +1,1 @@
-from .bezier_curve import compute_bezier
+from .cpp._pybezier import Curve, Bezier, UniformDistanceSampler
