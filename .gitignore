@@ -6,3 +6,6 @@ __pycache__
 *.pyc
 *.so
 *.egg-info
+
+# MacOS
+.DS_Store
