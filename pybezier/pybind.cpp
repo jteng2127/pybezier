@@ -5,7 +5,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(_pybezier, m) {
+PYBIND11_MODULE(pybezier, m) {
   py::class_<Curve, std::shared_ptr<Curve>>(m, "Curve")
       .def("__call__", &Curve::operator());
 
