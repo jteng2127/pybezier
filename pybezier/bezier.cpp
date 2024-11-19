@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <algorithm>
 
 Bezier::Bezier(std::vector<std::pair<double, double>> control_points)
     : control_points(control_points) {}
