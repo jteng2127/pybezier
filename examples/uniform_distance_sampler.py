@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from _pybezier import Bezier, UniformDistanceSampler
+from pybezier import Bezier, UniformDistanceSampler
 
 fig, ax = plt.subplots(2, 4, figsize=(16, 8))
 plt.tight_layout(rect=[0, 0, 1, 0.9])
