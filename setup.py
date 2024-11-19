@@ -110,7 +110,6 @@ setup(
     version="0.1",
     author="jteng2127",
     ext_modules=[CMakeExtension("pybezier")],
-    # packages=["pybezier"],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},
