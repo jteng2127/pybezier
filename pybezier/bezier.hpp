@@ -7,10 +7,10 @@ class Curve {
   virtual const std::pair<double, double> operator()(double t) = 0;
 };
 
-
 class Bezier : public Curve {
  private:
   std::vector<std::pair<double, double>> control_points;
+
  public:
   Bezier(std::vector<std::pair<double, double>> control_points);
   Bezier(const Bezier& bezier);
@@ -18,12 +18,23 @@ class Bezier : public Curve {
   const std::vector<std::pair<double, double>>& getControlPoints();
 };
 
+class SampledCurve : public Curve {
+ private:
+  std::vector<std::pair<double, double>> sampled_points;
+
+ public:
+  SampledCurve(std::vector<std::pair<double, double>> sampled_points);
+  SampledCurve(const SampledCurve& sampled_curve);
+  const std::pair<double, double> operator()(double t) override;
+  const std::vector<std::pair<double, double>>& getSampledPoints();
+};
+
 class UniformDistanceSampler : public Curve {
  private:
   Curve* curve;
   int samples;
   std::vector<double> cumulative_distances;
-  void compute_cumulative_distances(); // lazy evaluation
+  void compute_cumulative_distances();  // lazy evaluation
  public:
   UniformDistanceSampler(Curve* curve, int samples);
   const std::pair<double, double> operator()(double t) override;

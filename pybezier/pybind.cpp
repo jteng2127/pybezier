@@ -14,6 +14,11 @@ PYBIND11_MODULE(pybezier, m) {
       .def_property_readonly("control_points", &Bezier::getControlPoints)
       .def("__call__", &Bezier::operator());
 
+  py::class_<SampledCurve, Curve, std::shared_ptr<SampledCurve>>(m, "SampledCurve")
+      .def(py::init<std::vector<std::pair<double, double>>>())
+      .def_property_readonly("sampled_points", &SampledCurve::getSampledPoints)
+      .def("__call__", &SampledCurve::operator());
+
   py::class_<UniformDistanceSampler, Curve, std::shared_ptr<UniformDistanceSampler>>(
       m, "UniformDistanceSampler")
       .def(py::init<Curve*, int>())
