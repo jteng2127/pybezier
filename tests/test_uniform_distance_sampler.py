@@ -19,7 +19,7 @@ def test_uniform_distance_sampler_samples_setter():
     
     # 初始化 UniformDistanceSampler 並設置樣本數
     sampler = UniformDistanceSampler(bezier_curve, 5)
-    sampler.setSamples(15)
+    sampler.samples = 15
     
     # 驗證樣本數是否更新正確
     assert sampler.samples == 15, "樣本數 setter 不正確"
@@ -31,7 +31,7 @@ def test_uniform_distance_sampler_cumulative_distances():
     
     # 初始化 UniformDistanceSampler
     sampler = UniformDistanceSampler(bezier_curve, 10)
-    cumulative_distances = sampler.getCumulativeDistances()
+    cumulative_distances = sampler.cumulative_distances
     
     # 檢查累積距離是否計算正確
     assert len(cumulative_distances) == 10, "累積距離數量不正確"
