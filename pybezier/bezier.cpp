@@ -68,7 +68,8 @@ const std::pair<double, double> SampledCurve::operator()(double t) {
                             alpha * sampled_points[i + 1].second);
 }
 
-UniformDistanceSampler::UniformDistanceSampler(Curve* curve, int samples)
+UniformDistanceSampler::UniformDistanceSampler(std::shared_ptr<Curve> curve,
+                                               int samples)
     : curve(curve), samples(samples) {}
 
 void UniformDistanceSampler::compute_cumulative_distances() {

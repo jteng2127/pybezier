@@ -31,12 +31,12 @@ class SampledCurve : public Curve {
 
 class UniformDistanceSampler : public Curve {
  private:
-  Curve* curve;
+  std::shared_ptr<Curve> curve;
   int samples;
   std::vector<double> cumulative_distances;
   void compute_cumulative_distances();  // lazy evaluation
  public:
-  UniformDistanceSampler(Curve* curve, int samples);
+  UniformDistanceSampler(std::shared_ptr<Curve> curve, int samples);
   const std::pair<double, double> operator()(double t) override;
   const std::vector<double>& getCumulativeDistances();
   const int getSamples();

@@ -21,7 +21,7 @@ PYBIND11_MODULE(pybezier, m) {
 
   py::class_<UniformDistanceSampler, Curve, std::shared_ptr<UniformDistanceSampler>>(
       m, "UniformDistanceSampler")
-      .def(py::init<Curve*, int>())
+      .def(py::init<std::shared_ptr<Curve>, int>())
       .def_property_readonly("cumulative_distances",
                              &UniformDistanceSampler::getCumulativeDistances)
       .def_property("samples", &UniformDistanceSampler::getSamples,
