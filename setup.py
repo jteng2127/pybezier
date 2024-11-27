@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import sys
+import shutil
 from pathlib import Path
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -35,6 +36,7 @@ class CMakeBuild(build_ext):
             f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}{os.sep}",
             f"-DPYTHON_EXECUTABLE={sys.executable}",
             f"-DCMAKE_BUILD_TYPE={cfg}",  # not used on MSVC, but no harm
+            "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
         ]
         build_args = []
         if "CMAKE_ARGS" in os.environ:
@@ -97,6 +99,7 @@ class CMakeBuild(build_ext):
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
+        print("Starting build")
         subprocess.run(
             ["cmake", ext.sourcedir, *cmake_args], cwd=build_temp, check=True
         )
@@ -104,6 +107,9 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
 
+        compile_commands_path = build_temp / "compile_commands.json"
+        if compile_commands_path.exists():
+            shutil.copy(compile_commands_path, Path().resolve() / "compile_commands.json")
 
 setup(
     name="pybezier",

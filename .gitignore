@@ -7,5 +7,9 @@ __pycache__
 *.so
 *.egg-info
 
+# Visual Studio Code
+compile_commands.json
+.vscode
+
 # MacOS
 .DS_Store
