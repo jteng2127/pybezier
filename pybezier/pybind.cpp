@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "bezier.hpp"
+#include "curve.hpp"
 
 namespace py = pybind11;
 
@@ -14,13 +14,15 @@ PYBIND11_MODULE(pybezier, m) {
       .def_property_readonly("control_points", &Bezier::getControlPoints)
       .def("__call__", &Bezier::operator());
 
-  py::class_<SampledCurve, Curve, std::shared_ptr<SampledCurve>>(m, "SampledCurve")
+  py::class_<SampledCurve, Curve, std::shared_ptr<SampledCurve>>(m,
+                                                                 "SampledCurve")
       .def(py::init<std::vector<std::pair<double, double>>>())
       .def_property_readonly("sampled_points", &SampledCurve::getSampledPoints)
       .def("__call__", &SampledCurve::operator());
 
-  py::class_<UniformDistanceSampler, Curve, std::shared_ptr<UniformDistanceSampler>>(
-      m, "UniformDistanceSampler")
+  py::class_<UniformDistanceSampler, Curve,
+             std::shared_ptr<UniformDistanceSampler>>(m,
+                                                      "UniformDistanceSampler")
       .def(py::init<std::shared_ptr<Curve>, int>())
       .def_property_readonly("cumulative_distances",
                              &UniformDistanceSampler::getCumulativeDistances)
