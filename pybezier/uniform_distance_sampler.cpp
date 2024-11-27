@@ -1,3 +1,7 @@
+#include <algorithm>
+#include <exception>
+#include <stdexcept>
+
 #include "curve.hpp"
 
 const std::pair<double, double> UniformDistanceSampler::operator()(double t) {
