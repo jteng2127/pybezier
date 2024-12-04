@@ -2,6 +2,7 @@
 #include <pybind11/stl.h>
 
 #include "curve.hpp"
+#include "fit.hpp"
 
 namespace py = pybind11;
 
@@ -29,4 +30,12 @@ PYBIND11_MODULE(pybezier, m) {
       .def_property("samples", &UniformDistanceSampler::getSamples,
                     &UniformDistanceSampler::setSamples)
       .def("__call__", &UniformDistanceSampler::operator());
+
+  m.def("fit_curve_to_bezier", &fit_curve_to_bezier, py::arg("curve"),
+        py::arg("num_samples") = 100, py::arg("degree") = 3,
+        py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000);
+  m.def("fit_curve_to_beziers", &fit_curve_to_beziers, py::arg("curve"),
+        py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000);
+  m.def("compute_curve_error", &compute_curve_error, py::arg("a"), py::arg("b"),
+        py::arg("num_samples") = 100);
 }
