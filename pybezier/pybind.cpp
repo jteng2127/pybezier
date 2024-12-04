@@ -40,7 +40,7 @@ PYBIND11_MODULE(pybezier, m) {
         py::arg("num_samples") = 100, py::arg("degree") = 3,
         py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000);
   m.def("fit_curve_to_beziers", &fit_curve_to_beziers, py::arg("curve"),
-        py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000);
+        py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000, py::arg("num_bezier_curves") = 1);
   m.def("compute_curve_error", &compute_curve_error, py::arg("a"), py::arg("b"),
         py::arg("num_samples") = 100);
 }
