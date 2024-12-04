@@ -43,3 +43,12 @@ class UniformDistanceSampler : public Curve {
   const int getSamples();
   void setSamples(int samples);
 };
+
+class MultiCurve : public Curve {
+ private:
+  std::vector<std::shared_ptr<Curve>> curves;
+
+ public:
+  MultiCurve(std::vector<std::shared_ptr<Curve>> curves);
+  const std::pair<double, double> operator()(double t) override;
+};

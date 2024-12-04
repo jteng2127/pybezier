@@ -31,6 +31,10 @@ PYBIND11_MODULE(pybezier, m) {
                     &UniformDistanceSampler::setSamples)
       .def("__call__", &UniformDistanceSampler::operator());
 
+  py::class_<MultiCurve, Curve, std::shared_ptr<MultiCurve>>(m, "MultiCurve")
+      .def(py::init<std::vector<std::shared_ptr<Curve>>>())
+      .def("__call__", &MultiCurve::operator());
+
   m.def("fit_curve_to_bezier", &fit_curve_to_bezier, py::arg("curve"),
         py::arg("num_samples") = 100, py::arg("degree") = 3,
         py::arg("error_tolerance") = 0.01, py::arg("max_iterations") = 1000);
