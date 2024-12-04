@@ -6,6 +6,7 @@ __pycache__
 *.pyc
 *.so
 *.egg-info
+pybezier.pyi
 
 # Visual Studio Code
 compile_commands.json

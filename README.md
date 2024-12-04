@@ -29,6 +29,7 @@ The goal is to use multiple third-order (or higher order) Bezier curves to fit t
 - `pybind11`
 - C++11 compatible compiler
 - CMake 3.12 or newer
+- pybind11-stubgen
 
 ### Build Instructions
 
