@@ -33,7 +33,8 @@ PYBIND11_MODULE(pybezier, m) {
 
   py::class_<MultiCurve, Curve, std::shared_ptr<MultiCurve>>(m, "MultiCurve")
       .def(py::init<std::vector<std::shared_ptr<Curve>>>())
-      .def("__call__", &MultiCurve::operator());
+      .def("__call__", &MultiCurve::operator())
+      .def_property_readonly("curves", &MultiCurve::getCurves);
 
   m.def("fit_curve_to_bezier", &fit_curve_to_bezier, py::arg("curve"),
         py::arg("num_samples") = 100, py::arg("degree") = 3,

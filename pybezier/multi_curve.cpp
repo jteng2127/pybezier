@@ -24,3 +24,7 @@ const std::pair<double, double> MultiCurve::operator()(double t) {
 
   return (*curves[curve_index])(local_t);
 }
+
+const std::vector<std::shared_ptr<Curve>>& MultiCurve::getCurves() {
+  return curves;
+}

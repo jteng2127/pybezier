@@ -51,4 +51,5 @@ class MultiCurve : public Curve {
  public:
   MultiCurve(std::vector<std::shared_ptr<Curve>> curves);
   const std::pair<double, double> operator()(double t) override;
+  const std::vector<std::shared_ptr<Curve>>& getCurves();
 };

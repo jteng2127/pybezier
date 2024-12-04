@@ -19,7 +19,8 @@ for track in gpx.tracks:
 
 ax = plt.gca()
 ax.set_aspect('equal', adjustable='datalim')
-plt.show()
+ax.ticklabel_format(useOffset=False)
+plt.savefig('output/gpx.png')
 
 for waypoint in gpx.waypoints:
     print(f'waypoint {waypoint.name} -> ({waypoint.latitude},{waypoint.longitude})')
