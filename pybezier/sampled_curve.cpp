@@ -19,9 +19,8 @@ const std::pair<double, double> SampledCurve::operator()(double t) {
   if (sampled_points.size() == 0) {
     throw std::runtime_error("No sampled points");
   }
-  if (t < 0 || t > 1) {
-    throw std::runtime_error("t must be in [0, 1]");
-  }
+  if (t < 0) t = 0;
+  if (t > 1) t = 1;
   int n = sampled_points.size();
   // 0~1 -> 0~n-1
   // t = 0 -> 0

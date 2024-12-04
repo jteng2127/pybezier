@@ -5,9 +5,8 @@
 #include "curve.hpp"
 
 const std::pair<double, double> UniformDistanceSampler::operator()(double t) {
-  if (t < 0 || t > 1) {
-    throw std::runtime_error("t must be in [0, 1]");
-  }
+  if (t < 0) t = 0;
+  if (t > 1) t = 1;
   double d = t;
   if (cumulative_distances.size() != samples) {
     compute_cumulative_distances();

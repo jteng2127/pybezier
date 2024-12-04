@@ -20,9 +20,8 @@ const std::pair<double, double> Bezier::operator()(double t) {
   if (control_points.size() == 0) {
     throw std::runtime_error("No control points");
   }
-  if (t < 0 || t > 1) {
-    throw std::runtime_error("t must be in [0, 1]");
-  }
+  if (t < 0) t = 0;
+  if (t > 1) t = 1;
   std::vector<std::pair<double, double>> tmp = control_points;
   while (tmp.size() > 1) {
     std::vector<std::pair<double, double>> next(tmp.size() - 1);
