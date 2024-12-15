@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
-from pybezier import compute_bezier
+from pybezier import Bezier
 
 def plot_bezier(points, num_points=100):
     t_values = [i / (num_points - 1) for i in range(num_points)]
-    curve_points = [compute_bezier(points, t) for t in t_values]
+    bezier = Bezier(points)
+    curve_points = [bezier(t) for t in t_values]
     x_vals, y_vals = zip(*curve_points)
     
     plt.plot(x_vals, y_vals, label="Bezier Curve")

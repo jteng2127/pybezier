@@ -25,6 +25,7 @@ with open("data/2023-05-11_15-11-56_gpx測試.gpx", "r") as gpx_file:
             # for point in segment.points:
             #     print(f'Point at ({point.latitude},{point.longitude}) -> {point.elevation}')
 
+plt.rcParams.update({'font.size': 20})
 plt.figure(figsize=(10, 5))
 
 for curve in sampled_curves:
@@ -39,8 +40,8 @@ for curve in sampled_curves:
         print(f"Error with {num_samples} samples: {error}")
 
     # Plotting
-    plt.plot(*zip(*curve.sampled_points), label="GPX Curve")
-    plt.plot(*zip(*fitted_points), label="Fitted Bezier Curve")
+    plt.plot(*zip(*curve.sampled_points), label="GPX Curve", linewidth=6)
+    plt.plot(*zip(*fitted_points), label="Fitted Bezier Curve", linestyle="--", color="pink", linewidth=3)
 
 ax = plt.gca()
 ax.set_aspect("equal", adjustable="datalim")
