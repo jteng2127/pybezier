@@ -1,5 +1,5 @@
 import pytest
-from pybezier import Bezier, SampledCurve, fit_curve_to_bezier, fit_curve_to_beziers
+from pybezier import Bezier, SampledCurve, fit_curve_to_bezier, fit_curve_to_beziers, MultiCurve
 
 
 def test_fit_curve_to_bezier():
@@ -11,6 +11,4 @@ def test_fit_curve_to_bezier():
 def test_fit_curve_to_beziers():
     curve = SampledCurve([(0.0, 0.0), (1.0, 2.0), (2.0, 0.0)])
     beziers = fit_curve_to_beziers(curve)
-    assert all(
-        isinstance(b, Bezier) for b in beziers
-    ), "fit_bezier_curves 應返回 Bezier 實例列表"
+    assert isinstance(beziers, MultiCurve), "fit_bezier_curves 應返回 MultiCurve 實例"
