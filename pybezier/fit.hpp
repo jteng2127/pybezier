@@ -6,7 +6,10 @@
 #include "curve.hpp"
 
 std::shared_ptr<MultiCurve> fit_curve_to_beziers(std::shared_ptr<Curve> curve,
-                                double error_tolerance, int max_iterations, int num_bezier_curves);
+                                                 double error_tolerance,
+                                                 int max_iterations,
+                                                 int num_bezier_curves,
+                                                 int degree);
 
 std::shared_ptr<Bezier> fit_curve_to_bezier(std::shared_ptr<Curve> curve,
                                             int num_samples, int degree,

@@ -387,9 +387,11 @@ double compute_curve_error(std::shared_ptr<Curve> a, std::shared_ptr<Curve> b,
 }
 
 std::shared_ptr<MultiCurve> fit_curve_to_beziers(std::shared_ptr<Curve> curve,
-                                double error_tolerance, int max_iterations, int num_bezier_curves) {
+                                                 double error_tolerance,
+                                                 int max_iterations,
+                                                 int num_bezier_curves,
+                                                 int degree) {
   int num_samples_each_bezier = 100;
-  int degree = 3;
   int num_control_points = degree + 1;
   // int num_bezier_curves = 1;
 
@@ -408,7 +410,9 @@ std::shared_ptr<MultiCurve> fit_curve_to_beziers(std::shared_ptr<Curve> curve,
           sampled_points.begin() + (i + 1) * num_samples_each_bezier);
       std::shared_ptr<Curve> splited_sampled_curve =
           std::make_shared<SampledCurve>(splited_sampled_points);
-      auto bezier = fit_curve_to_bezier(splited_sampled_curve, num_samples_each_bezier, degree, error_tolerance, max_iterations);
+      auto bezier =
+          fit_curve_to_bezier(splited_sampled_curve, num_samples_each_bezier,
+                              degree, error_tolerance, max_iterations);
       beziers.push_back(bezier);
     }
 
